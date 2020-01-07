@@ -1,5 +1,5 @@
 {
-  "name": "servocoder/richfilemanager-php",
+  "name": "refgd/richfilemanager-php",
   "description": "PHP connector for RichFilemanager",
   "type": "project",
   "keywords": [
@@ -10,14 +10,6 @@
     "php"
   ],
   "license": "MIT",
-  "authors": [
-    {
-      "name": "Pavel Solomienko",
-      "email": "servocoder@gmail.com",
-      "homepage": "http://fm.devale.pro",
-      "role": "Developer"
-    }
-  ],
   "require": {
     "php": ">= 5.6.4",
     "symfony/http-foundation": "~3.4|~4.0",
