@@ -305,7 +305,7 @@ class Storage extends BaseStorage implements StorageInterface
     public function copyItem($source, $target, $remove = false)
     {
         $context = stream_context_create([
-            's3' => array_merge($source->getAclParams(), [
+            's3' => empty($this->s3->encryption) ? $source->getAclParams() : array_merge($source->getAclParams(), [
                 'ServerSideEncryption' => $this->s3->encryption,
             ]),
         ]);
