@@ -684,6 +684,14 @@ class BaseUploadHandler
         return true;
     }
 
+    protected function writeFun($funName, $src_img, $new_file_path, $image_quality) {
+        if($image_quality === null){
+            return $funName($src_img, $new_file_path);
+        }
+
+        return $funName($src_img, $new_file_path, $image_quality);
+    }
+
     protected function gd_create_scaled_image($file, $version, $options) {
         if (!function_exists('imagecreatetruecolor')) {
             error_log('Function not found: imagecreatetruecolor');
@@ -743,7 +751,7 @@ class BaseUploadHandler
         );
         if ($scale >= 1) {
             if ($image_oriented) {
-                return $write_func($src_img, $new_file_path, $image_quality);
+                return $this->writeFun($write_func, $src_img, $new_file_path, $image_quality);
             }
             if ($file->path !== $new_file_path) {
                 return copy($file->path, $new_file_path);
@@ -789,7 +797,7 @@ class BaseUploadHandler
             $new_height,
             $img_width,
             $img_height
-        ) && $write_func($new_img, $new_file_path, $image_quality);
+        ) && $this->writeFun($write_func, $new_img, $new_file_path, $image_quality);
         $this->gd_set_image_object($file->path, $new_img);
         return $success;
     }
